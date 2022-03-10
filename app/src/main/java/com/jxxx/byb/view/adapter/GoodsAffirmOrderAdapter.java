@@ -1,0 +1,34 @@
+package com.jxxx.byb.view.adapter;
+
+import android.view.View;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.jxxx.byb.R;
+import com.jxxx.byb.bean.OrderPreviewBean;
+import com.jxxx.byb.utils.GlideImageLoader;
+import com.jxxx.byb.view.activity.ShopDetailsActivity;
+
+import java.util.List;
+
+public class GoodsAffirmOrderAdapter extends BaseQuickAdapter<OrderPreviewBean.PreviewOrderDTOBean.OrderDetailListBean, BaseViewHolder> {
+    @Override
+    protected void convert(BaseViewHolder helper, OrderPreviewBean.PreviewOrderDTOBean.OrderDetailListBean data) {
+        OrderPreviewBean.PreviewOrderDTOBean.OrderDetailListBean.PreviewOrderSpuDTOBean mData = data.getPreviewOrderSpuDTO();
+        GlideImageLoader.loadImageViewRadius(mContext,mData.getIconUrl(),30,helper.getView(R.id.iv_img));
+        helper.setText(R.id.tv_type,mData.getSpuName())
+                .setText(R.id.tv_price,"￥"+mData.getPreviewOrderSkuDTO().getSkuPriceDTO().getSkuPrice()+mData.getPreviewOrderSkuDTO().getSkuPriceDTO().getUnit())
+        .addOnClickListener(R.id.iv_add).setText(R.id.tv_num,"×"+mData.getPreviewOrderSkuDTO().getSkuNum());
+        helper.getView(R.id.rl_contact).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopDetailsActivity.startActivityIntent(mContext, mData.getId());
+            }
+        });
+
+    }
+
+    public GoodsAffirmOrderAdapter(List<OrderPreviewBean.PreviewOrderDTOBean.OrderDetailListBean> data) {
+        super(R.layout.item_shop_order, data);
+    }
+}

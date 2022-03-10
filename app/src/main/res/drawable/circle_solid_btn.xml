@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 按压状态 -->
+    <item android:drawable="@drawable/circle_solid_theme_25" android:state_selected="true" />
+
+    <!-- 默认状态 -->
+    <item android:drawable="@drawable/circle_solid_e1e0df_25" android:state_selected="false"/>
+
+</selector>
