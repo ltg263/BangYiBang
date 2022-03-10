@@ -25,7 +25,6 @@ import com.jxxx.byb.bean.PostOrderSubmit;
 import com.jxxx.byb.utils.DialogUtils;
 import com.jxxx.byb.utils.alipay.PaymentContract;
 import com.jxxx.byb.utils.alipay.PaymentParameterBean;
-import com.jxxx.byb.utils.alipay.PaymentPresenter;
 import com.jxxx.byb.view.adapter.PayChannelsAdapter;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -55,7 +54,7 @@ public class OrderPayActivity extends BaseActivity implements PaymentContract.Vi
     PostOrderSubmit mPostOrderSubmit;
     PayChannelsAdapter mPayChannelsAdapter;
     PostOrderSubmit.PayCreate mPayCreate;
-    private PaymentPresenter paymentPresenter;
+//    private PaymentPresenter paymentPresenter;
     private IWXAPI api;
 
     boolean isPay = false;
@@ -68,7 +67,7 @@ public class OrderPayActivity extends BaseActivity implements PaymentContract.Vi
     public void initView() {
         setToolbar(mMyToolbar, "订单支付");
 
-        paymentPresenter = new PaymentPresenter(this, OrderPayActivity.this);
+//        paymentPresenter = new PaymentPresenter(this, OrderPayActivity.this);
         api = WXAPIFactory.createWXAPI(this, MainApplication.getContext().getWxId());
         mPostOrderSubmit = (PostOrderSubmit) getIntent().getSerializableExtra("mPostOrderSubmit");
         mPayChannelsAdapter = new PayChannelsAdapter(null);
@@ -243,7 +242,7 @@ public class OrderPayActivity extends BaseActivity implements PaymentContract.Vi
     private void appPayZfb(String data) {
         PaymentParameterBean mPaymentParameterBean1 = new PaymentParameterBean();
         mPaymentParameterBean1.setOrderInfo(data);
-        paymentPresenter.doAliPay(mPaymentParameterBean1);
+//        paymentPresenter.doAliPay(mPaymentParameterBean1);
     }
 
     @Override
