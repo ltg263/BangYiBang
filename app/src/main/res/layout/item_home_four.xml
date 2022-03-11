@@ -14,13 +14,13 @@
     <TextView
         android:id="@+id/tv_title"
         android:layout_toStartOf="@id/iv_img"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:textSize="14sp"
         android:ellipsize="end"
         android:textColor="@color/color_333333"
-        android:text="一对一家教定制-这个标题一对一家教定制-这是个标题一对一家教定制-这是个标题"/>
+        android:text="一对一"/>
 
     <TextView
         android:id="@+id/tv_canyuren"

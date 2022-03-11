@@ -26,7 +26,7 @@ import com.jxxx.byb.R;
 public class NumberEditText extends LinearLayout {
 
     /** 输入框 */
-    private TextView[] inputTv = new TextView[6];
+    private TextView[] inputTv = new TextView[4];
     /** 用于接受键盘输入内容 */
     private EditText invisibleEt;
     /** 输入结束监听 */
@@ -73,8 +73,8 @@ public class NumberEditText extends LinearLayout {
         inputTv[1] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv1);
         inputTv[2] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv2);
         inputTv[3] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv3);
-        inputTv[4] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv4);
-        inputTv[5] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv5);
+//        inputTv[4] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv4);
+//        inputTv[5] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv5);
 //        inputTv[6] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv6);
 //        inputTv[7] = (TextView) view.findViewById(R.id.e7yoo_number_edittext_tv7);
         invisibleEt = (EditText) view.findViewById(R.id.e7yoo_number_edittext_et);

@@ -5,14 +5,26 @@
     android:layout_height="match_parent"
     android:background="@color/color_bj_theme"
     android:orientation="vertical">
-
     <LinearLayout
         android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp">
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:drawableEnd="@mipmap/icon_xia_jiantou"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="宁波"
+            android:textColor="@color/color_333333"
+            android:textSize="14sp"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_search"
@@ -25,58 +37,27 @@
             android:drawablePadding="10dp"
             android:gravity="center_vertical"
             android:paddingHorizontal="15dp"
-            android:text="输入小区名/商圈/地铁"
+            android:text="输入商品名称"
             android:textColor="@color/color_999999"
             android:textSize="12sp" />
 
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_category_parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0.8dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_category_child"
-            android:layout_width="85dp"
-            android:layout_height="match_parent"
-            android:background="@color/color_f5f5f5"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        </LinearLayout>
-
+        <ImageView
+            android:id="@+id/tv_kf"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="3dp"
+            android:src="@drawable/group_3698" />
 
     </LinearLayout>
 
-
-    <RelativeLayout
-        android:id="@+id/rl_include_login"
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/magic_indicator"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-50dp">
-        <include layout="@layout/include_go_login" />
+        android:layout_height="35dp" />
 
-    </RelativeLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:background="@color/color_f5f5f5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

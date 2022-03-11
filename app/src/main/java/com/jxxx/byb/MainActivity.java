@@ -19,7 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.jxxx.byb.api.HttpsUtils;
 import com.jxxx.byb.app.ConstValues;
 import com.jxxx.byb.base.BaseActivity;
-import com.jxxx.byb.utils.StringUtil;
 import com.jxxx.byb.view.fragment.HomeFiveFragment;
 import com.jxxx.byb.view.fragment.HomeFourFragment;
 import com.jxxx.byb.view.fragment.HomeOneFragment;
@@ -137,9 +136,6 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onResume() {
         super.onResume();
-        if(StringUtil.isNotBlank(ConstValues.SHOW_MAIN_FRAGMENT)){
-            startFragmentTwo(ConstValues.SHOW_MAIN_FRAGMENT);
-        }
         if(ConstValues.ISLOGIN){
             HttpsUtils.getShopCarNum(new HttpsUtils.ShoppingCartInterface() {
                 @Override
@@ -156,19 +152,6 @@ public class MainActivity extends BaseActivity{
     public void showOneTwoUi(boolean isBandZhu){
         mBnvHomeNavigation.getMenu().getItem(0).setVisible(isBandZhu);
         mBnvHomeNavigation.getMenu().getItem(1).setVisible(!isBandZhu);
-    }
-
-    public void startFragmentTwo(String type){
-        switch (type){
-            case "购物车":
-                mBnvHomeNavigation.setSelectedItemId(R.id.menu_home_3);
-                break;
-            case "分类":
-                mBnvHomeNavigation.setSelectedItemId(R.id.menu_home_2);
-                break;
-        }
-        ConstValues.SHOW_MAIN_FRAGMENT = "";
-//        mHomeTwoFragment.setPos(pos);
     }
     public void updateUI(){
         mHomeThreeFragment.initData();

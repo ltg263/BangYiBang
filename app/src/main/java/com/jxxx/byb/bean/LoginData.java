@@ -1,92 +1,184 @@
 package com.jxxx.byb.bean;
 
 public class LoginData {
+
     /**
-     * accessToken : {"accessToken":"1256","issue":0,"tokenExpire":18000}
-     * auditStatus : 0未提交 1审核通过 2审核失败 3审核中
-     * failureReason :
-     * userId : 1
+     * userinfo : {"id":13,"username":"17774004352","nickname":"177****4352","mobile":"17774004352","avatar":"data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgaGVpZ2h0PSIxMDAiIHdpZHRoPSIxMDAiPjxyZWN0IGZpbGw9InJnYigxNzQsMjI5LDE2MCkiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48L3JlY3Q+PHRleHQgeD0iNTAiIHk9IjUwIiBmb250LXNpemU9IjUwIiB0ZXh0LWNvcHk9ImZhc3QiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRleHQtcmlnaHRzPSJhZG1pbiIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPjE8L3RleHQ+PC9zdmc+","birthday":null,"money":"0.00","score":0,"code":"BtdNpWjvxf","pid":0,"is_examine":0,"token":"d1877e51-5ec2-42fd-9f33-5954a0766e5d","user_id":13,"createtime":1646984367,"expiretime":1649576367,"expires_in":2592000}
      */
 
-    private AccessTokenBean accessToken;
-    private String auditStatus;
-    private String failureReason;
-    private String userId;
-    private String auditRecordId;
+    private UserinfoBean userinfo;
 
-    public void setAuditRecordId(String auditRecordId) {
-        this.auditRecordId = auditRecordId;
+    public UserinfoBean getUserinfo() {
+        return userinfo;
     }
 
-    public String getAuditRecordId() {
-        return auditRecordId;
+    public void setUserinfo(UserinfoBean userinfo) {
+        this.userinfo = userinfo;
     }
 
-    public AccessTokenBean getAccessToken() {
-        return accessToken;
-    }
-
-    public void setAccessToken(AccessTokenBean accessToken) {
-        this.accessToken = accessToken;
-    }
-
-    public String getAuditStatus() {
-        return auditStatus;
-    }
-
-    public void setAuditStatus(String auditStatus) {
-        this.auditStatus = auditStatus;
-    }
-
-    public String getFailureReason() {
-        return failureReason;
-    }
-
-    public void setFailureReason(String failureReason) {
-        this.failureReason = failureReason;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public static class AccessTokenBean {
+    public static class UserinfoBean {
         /**
-         * accessToken : 1256
-         * issue : 0
-         * tokenExpire : 18000
+         * id : 13
+         * username : 17774004352
+         * nickname : 177****4352
+         * mobile : 17774004352
+         * avatar : data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgaGVpZ2h0PSIxMDAiIHdpZHRoPSIxMDAiPjxyZWN0IGZpbGw9InJnYigxNzQsMjI5LDE2MCkiIHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIj48L3JlY3Q+PHRleHQgeD0iNTAiIHk9IjUwIiBmb250LXNpemU9IjUwIiB0ZXh0LWNvcHk9ImZhc3QiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIHRleHQtcmlnaHRzPSJhZG1pbiIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiPjE8L3RleHQ+PC9zdmc+
+         * birthday : null
+         * money : 0.00
+         * score : 0
+         * code : BtdNpWjvxf
+         * pid : 0
+         * is_examine : 0
+         * token : d1877e51-5ec2-42fd-9f33-5954a0766e5d
+         * user_id : 13
+         * createtime : 1646984367
+         * expiretime : 1649576367
+         * expires_in : 2592000
          */
 
-        private String accessToken;
-        private String issue;
-        private String tokenExpire;
+        private String id;
+        private String username;
+        private String nickname;
+        private String mobile;
+        private String avatar;
+        private Object birthday;
+        private String money;
+        private String score;
+        private String code;
+        private String pid;
+        private String is_examine;
+        private String token;
+        private String user_id;
+        private String createtime;
+        private String expiretime;
+        private String expires_in;
 
-        public String getAccessToken() {
-            return accessToken;
+        public String getId() {
+            return id;
         }
 
-        public void setAccessToken(String accessToken) {
-            this.accessToken = accessToken;
+        public void setId(String id) {
+            this.id = id;
         }
 
-        public String getIssue() {
-            return issue;
+        public String getUsername() {
+            return username;
         }
 
-        public void setIssue(String issue) {
-            this.issue = issue;
+        public void setUsername(String username) {
+            this.username = username;
         }
 
-        public String getTokenExpire() {
-            return tokenExpire;
+        public String getNickname() {
+            return nickname;
         }
 
-        public void setTokenExpire(String tokenExpire) {
-            this.tokenExpire = tokenExpire;
+        public void setNickname(String nickname) {
+            this.nickname = nickname;
+        }
+
+        public String getMobile() {
+            return mobile;
+        }
+
+        public void setMobile(String mobile) {
+            this.mobile = mobile;
+        }
+
+        public String getAvatar() {
+            return avatar;
+        }
+
+        public void setAvatar(String avatar) {
+            this.avatar = avatar;
+        }
+
+        public Object getBirthday() {
+            return birthday;
+        }
+
+        public void setBirthday(Object birthday) {
+            this.birthday = birthday;
+        }
+
+        public String getMoney() {
+            return money;
+        }
+
+        public void setMoney(String money) {
+            this.money = money;
+        }
+
+        public String getScore() {
+            return score;
+        }
+
+        public void setScore(String score) {
+            this.score = score;
+        }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        public String getPid() {
+            return pid;
+        }
+
+        public void setPid(String pid) {
+            this.pid = pid;
+        }
+
+        public String getIs_examine() {
+            return is_examine;
+        }
+
+        public void setIs_examine(String is_examine) {
+            this.is_examine = is_examine;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public void setToken(String token) {
+            this.token = token;
+        }
+
+        public String getUser_id() {
+            return user_id;
+        }
+
+        public void setUser_id(String user_id) {
+            this.user_id = user_id;
+        }
+
+        public String getCreatetime() {
+            return createtime;
+        }
+
+        public void setCreatetime(String createtime) {
+            this.createtime = createtime;
+        }
+
+        public String getExpiretime() {
+            return expiretime;
+        }
+
+        public void setExpiretime(String expiretime) {
+            this.expiretime = expiretime;
+        }
+
+        public String getExpires_in() {
+            return expires_in;
+        }
+
+        public void setExpires_in(String expires_in) {
+            this.expires_in = expires_in;
         }
     }
 }

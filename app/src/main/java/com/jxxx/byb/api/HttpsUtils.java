@@ -103,7 +103,7 @@ public class HttpsUtils {
     public static void getVerifyCode(Context mContext,TextView bnt,String mobile,String event) {
         LoginRequest bean = new LoginRequest();
         bean.setMobile(mobile);
-        bean.setEvent(event);//1注册 2登录 3找回密码
+        bean.setEvent("test");//register/resetpwd/changepwd/profile/test//测试专用模板test
         RetrofitUtil.getInstance().apiService()
                 .postSendSms(bean)
                 .observeOn(AndroidSchedulers.mainThread())

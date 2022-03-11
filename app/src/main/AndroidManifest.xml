@@ -80,11 +80,9 @@
         <activity android:name="com.jxxx.byb.view.activity.MineCouponListActivity" />
         <activity android:name="com.jxxx.byb.view.activity.MineInvoiceOrderActivity" />
         <activity android:name="com.jxxx.byb.view.activity.MineInvoiceActivity" />
-        <activity android:name="com.jxxx.byb.view.activity.CreateShopActivity" />
         <activity android:name="com.jxxx.byb.view.activity.payActivity.ActivityPayChongZhi" />
         <activity android:name="com.jxxx.byb.view.activity.OrderCouponListActivity" />
         <activity android:name="com.jxxx.byb.view.activity.mine.MineInfoActivity" />
-        <activity android:name="com.jxxx.byb.view.activity.CreateShopResultActivity" />
         <activity android:name="com.jxxx.byb.view.activity.payActivity.ActivityPayHomeQb" />
         <activity android:name="com.jxxx.byb.view.activity.payActivity.ActivityPayBankCardAdd" />
         <activity android:name="com.jxxx.byb.view.activity.payActivity.ActivityPayBankCardList" />

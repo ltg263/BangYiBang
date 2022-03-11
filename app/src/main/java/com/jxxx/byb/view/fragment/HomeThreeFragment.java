@@ -232,7 +232,6 @@ public class HomeThreeFragment extends BaseFragment {
                     LoginEmsSendActivity.startActivityLogin(getActivity());
                     return;
                 }
-                ((MainActivity) getActivity()).startFragmentTwo("分类");
                 break;
             case R.id.tv_commit:
                 baseStartActivity(OrderAffirmActivity.class, null);

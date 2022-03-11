@@ -10,9 +10,12 @@ import com.jxxx.byb.R;
 import com.jxxx.byb.api.HttpsUtils;
 import com.jxxx.byb.api.Result;
 import com.jxxx.byb.api.RetrofitUtil;
+import com.jxxx.byb.app.ConstValues;
 import com.jxxx.byb.base.BaseActivity;
+import com.jxxx.byb.bean.LoginData;
 import com.jxxx.byb.bean.LoginRequest;
 import com.jxxx.byb.utils.IntentUtils;
+import com.jxxx.byb.utils.SharedUtils;
 import com.jxxx.byb.utils.view.NumberEditText;
 
 import butterknife.BindView;
@@ -41,7 +44,7 @@ public class LoginEmsCheckActivity extends BaseActivity {
     public void initView() {
         setToolbar(mMyToolbar, "");
         mobile = getIntent().getStringExtra("mobile");
-        mTvEmsMobile.setText("已发送验证码到"+mobile);
+        mTvEmsMobile.setText("发送验证码到"+mobile);
         mNetCheck.setOnInputFinish(new NumberEditText.OnInputFinishListener() {
             @Override
             public void onInputFinish(String captcha) {
@@ -64,15 +67,19 @@ public class LoginEmsCheckActivity extends BaseActivity {
                 .postUserMobileLogin(bean)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result>() {
+                .subscribe(new Observer<Result<LoginData>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result result) {
+                    public void onNext(Result<LoginData> result) {
+
                         if(isResultOk(result)) {
+                            LoginData.UserinfoBean userinfo = result.getData().getUserinfo();
+                            ConstValues.ISLOGIN = true;
+                            SharedUtils.singleton().put(ConstValues.TOKENID,userinfo.getToken());
                             IntentUtils.getInstence().intent(LoginEmsCheckActivity.this, MainActivity.class);
                         }
                     }
@@ -89,6 +96,6 @@ public class LoginEmsCheckActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        HttpsUtils.getVerifyCode(this,mTvEms,mobile,"1");
+        HttpsUtils.getVerifyCode(this,mTvEms,mobile,"mobilelogin");
     }
 }

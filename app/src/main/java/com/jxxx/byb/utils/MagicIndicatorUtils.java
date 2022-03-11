@@ -27,6 +27,7 @@ import java.util.List;
 
 public class MagicIndicatorUtils {
 
+
     /**
      * 基础的下划线
      * @param mContext
@@ -77,11 +78,12 @@ public class MagicIndicatorUtils {
         ViewPagerHelper.bind(mMagicIndicator, mViewPager);
     }
 
-    public static void initMagicIndicator_2(Context mContext, List<String> mDataList,MagicIndicator mMagicIndicator,ViewPager mViewPager) {
+    public static void initMagicIndicator_2(Context mContext, boolean isAdjustMode,List<String> mDataList,MagicIndicator mMagicIndicator,ViewPager mViewPager) {
         mMagicIndicator.setBackgroundColor(mContext.getResources().getColor(R.color.color_ffffff));
-        CommonNavigator commonNavigator7 = new CommonNavigator(mContext);
-        commonNavigator7.setScrollPivotX(0.65f);
-        commonNavigator7.setAdapter(new CommonNavigatorAdapter() {
+        CommonNavigator mCommonNavigator = new CommonNavigator(mContext);
+        mCommonNavigator.setAdjustMode(isAdjustMode);
+        mCommonNavigator.setScrollPivotX(0.65f);
+        mCommonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
                 return mDataList == null ? 0 : mDataList.size();
@@ -117,7 +119,7 @@ public class MagicIndicatorUtils {
                 return indicator;
             }
         });
-        mMagicIndicator.setNavigator(commonNavigator7);
+        mMagicIndicator.setNavigator(mCommonNavigator);
         ViewPagerHelper.bind(mMagicIndicator, mViewPager);
     }
 }

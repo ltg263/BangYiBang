@@ -68,7 +68,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                     ToastUtil.showLongStrToast(this, "请输入手机号");
                     return;
                 }
-                HttpsUtils.getVerifyCode(this,authCode,account,"3");
+                HttpsUtils.getVerifyCode(this,authCode,account,"resetpwd");
                 break;
             case R.id.tv_done:
                 String pw1 = etPassword.getText().toString().trim();

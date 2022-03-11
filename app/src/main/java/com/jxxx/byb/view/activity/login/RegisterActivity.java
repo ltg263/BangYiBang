@@ -70,7 +70,7 @@ public class RegisterActivity extends BaseActivity {
                     ToastUtil.showLongStrToast(this, "请输入手机号");
                     return;
                 }
-                HttpsUtils.getVerifyCode(this,authCode,account,"1");
+                HttpsUtils.getVerifyCode(this,authCode,account,"register");
                 break;
             case R.id.tv_register:
                 toRegister();
@@ -98,7 +98,6 @@ public class RegisterActivity extends BaseActivity {
         LoginRequest bean = new LoginRequest();
         bean.setMobile(etAccount.getText().toString());
         bean.setPassword(pass);
-        bean.setSmsVerificationCode(verify);
         RetrofitUtil.getInstance().apiService()
                 .smsRegister(bean)
                 .observeOn(AndroidSchedulers.mainThread())

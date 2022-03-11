@@ -41,12 +41,14 @@
             android:id="@+id/e7yoo_number_edittext_tv4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_weight="1"
             style="@style/e7yoo_number_edittext_text"/>
         <TextView
             android:id="@+id/e7yoo_number_edittext_tv5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_weight="1"
             style="@style/e7yoo_number_edittext_text"/>
         <TextView

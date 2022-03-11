@@ -5,7 +5,6 @@ package com.jxxx.byb.app;
  */
 
 public class ConstValues {
-    public static final String BASE_STR = "base_put";
     public static String SHOW_MAIN_FRAGMENT = "show_main_fragment";
     /**
      * 应用名称
@@ -26,7 +25,7 @@ public class ConstValues {
     /**
      * 服务器后台地址
      */
-    public static final String BASE_URL = "http://47.119.180.0/";
+    public static final String BASE_URL = "http://api.byb985.com/";
 
 
     //默认连接超时时间

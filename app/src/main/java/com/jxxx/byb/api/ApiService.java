@@ -8,14 +8,16 @@ import com.jxxx.byb.base.ShopInfoData;
 import com.jxxx.byb.base.ShopInfoListData;
 import com.jxxx.byb.bean.AccoutInfoBean;
 import com.jxxx.byb.bean.AddressModel;
+import com.jxxx.byb.bean.ArticleCateBean;
+import com.jxxx.byb.bean.ArticleCateListBean;
 import com.jxxx.byb.bean.CategoryDataList;
 import com.jxxx.byb.bean.CategoryTreeData;
 import com.jxxx.byb.bean.ChannelsListBean;
 import com.jxxx.byb.bean.CouponTemplateData;
 import com.jxxx.byb.bean.GlobalAdconfigBean;
 import com.jxxx.byb.bean.HomeActivityData;
-import com.jxxx.byb.bean.HomeBannerData;
 import com.jxxx.byb.bean.HomeCategoryData;
+import com.jxxx.byb.bean.IndexGetBannerBean;
 import com.jxxx.byb.bean.LoginData;
 import com.jxxx.byb.bean.LoginRequest;
 import com.jxxx.byb.bean.OrderHistoryBean;
@@ -28,6 +30,7 @@ import com.jxxx.byb.bean.ParamData;
 import com.jxxx.byb.bean.PayDataBean;
 import com.jxxx.byb.bean.PostAuditSubmitCommand;
 import com.jxxx.byb.bean.PostOrderSubmit;
+import com.jxxx.byb.bean.ProductListBean;
 import com.jxxx.byb.bean.RechargeAllBean;
 import com.jxxx.byb.bean.ShoppingCartListBean;
 import com.jxxx.byb.bean.SubmitFilesBean;
@@ -64,7 +67,7 @@ public interface ApiService {
      * @param request
      * @return
      */
-    @POST(ConstValues.BASE_URL + "/api/user/mobilelogin")
+    @POST(ConstValues.BASE_URL + "api/user/mobilelogin")
     Observable<Result<LoginData>> postUserMobileLogin(@Body LoginRequest request);
 
     /**
@@ -84,11 +87,33 @@ public interface ApiService {
     Observable<Result> postSmsFindPwd(@Body LoginRequest request);
 
     /**
-     * 首页接口
+     * 首页-获取 Banner
      * @return
      */
-    @GET(ConstValues.BASE_URL + "api/index/index")
-    Observable<Result> getIndexIndex();
+    @GET(ConstValues.BASE_URL + "api/index/getBanner")
+    Observable<Result<List<IndexGetBannerBean>>> getIndexGetBanner();
+
+    /**
+     * 首页-获取 产品列表
+     * @return
+     */
+    @GET(ConstValues.BASE_URL + "api/product/list")
+    Observable<Result<ProductListBean>> getProductList(@Query("page") int page, @Query("limit") int limit);
+
+
+    /**
+     * 文章模块-获取 文章分类
+     * @return
+     */
+    @GET(ConstValues.BASE_URL + "api/Article/cate")
+    Observable<Result<List<ArticleCateBean>>> getArticleCate();
+
+    /**
+     * 文章模块-获取 文章分类
+     * @return
+     */
+    @POST(ConstValues.BASE_URL + "api/Article/list")
+    Observable<Result<ArticleCateListBean>> getArticleList(@Query("cate_id") String cate_id,@Query("page") int page, @Query("limit") int limit);
 
 
     /**

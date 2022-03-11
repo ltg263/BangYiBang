@@ -4,6 +4,7 @@ package com.jxxx.byb.view.fragment;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jxxx.byb.R;
@@ -11,11 +12,19 @@ import com.jxxx.byb.api.Result;
 import com.jxxx.byb.api.RetrofitUtil;
 import com.jxxx.byb.app.ConstValues;
 import com.jxxx.byb.base.BaseFragment;
+import com.jxxx.byb.bean.IndexGetBannerBean;
+import com.jxxx.byb.bean.ProductListBean;
 import com.jxxx.byb.utils.GlideImageLoader;
 import com.jxxx.byb.utils.StatusBarUtil;
+import com.jxxx.byb.utils.StringUtil;
 import com.jxxx.byb.view.activity.login.LoginEmsSendActivity;
 import com.jxxx.byb.view.activity.search.SearchGoodsActivity;
 import com.jxxx.byb.view.adapter.HomeOneAdapter;
+import com.scwang.smartrefresh.header.MaterialHeader;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -34,6 +43,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HomeOneFragment extends BaseFragment {
 
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
     @BindView(R.id.home_banner)
     Banner mHomeBanner;
     @BindView(R.id.rv_list)
@@ -42,6 +53,7 @@ public class HomeOneFragment extends BaseFragment {
     RelativeLayout rl_include_login;
 
     private HomeOneAdapter mHomeOneAdapter;
+    int page = 1;
     @Override
     protected int setLayoutResourceID() {
         StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.color_bj_theme);
@@ -49,53 +61,49 @@ public class HomeOneFragment extends BaseFragment {
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.white);
-        }else {
-            initData();
-            StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.color_2E6DFB);
-        }
-    }
-
-    @Override
     protected void initView() {
         mRvList.setHasFixedSize(true);
+        refreshLayout.setRefreshHeader(new MaterialHeader(getActivity()).setShowBezierWave(false));
+        refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                page++;
+                getProductList();
+            }
+
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                page=1;
+                initData();
+            }
+        });
         mHomeOneAdapter = new HomeOneAdapter(null);
         mRvList.setAdapter(mHomeOneAdapter);
     }
 
     @Override
     protected void initData() {
+//        showLoading();
         RetrofitUtil.getInstance().apiService()
-                .getIndexIndex()
+                .getIndexGetBanner()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<Result>() {
+                .subscribe(new Observer<Result<List<IndexGetBannerBean>>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Result result) {
-                        hideLoading();
+                    public void onNext(Result<List<IndexGetBannerBean>> result) {
                         if(isResultOk(result)){
-//                            if(result.getData()!=null){
+                            if(result.getData()!=null){
                                 ArrayList<String> list_path = new ArrayList<>();
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
-                                list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
+                                for(int i=0;i<result.getData().size();i++){
+                                    list_path.add(ConstValues.BASE_URL+result.getData().get(i).getImage());
+                                }
                                 bannerConfig(list_path);
-                                mHomeOneAdapter.setNewData(list_path);
-//                            }
+                            }
                         }
                     }
 
@@ -106,6 +114,48 @@ public class HomeOneFragment extends BaseFragment {
 
                     @Override
                     public void onComplete() {
+                        hideLoading();
+                    }
+                });
+        getProductList();
+    }
+
+    private void getProductList() {
+        RetrofitUtil.getInstance().apiService()
+                .getProductList(page,ConstValues.PAGE_SIZE)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<Result<ProductListBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Result<ProductListBean> result) {
+                        hideLoading();
+                        if(isResultOk(result)){
+                            if(page==1){
+                                mHomeOneAdapter.setNewData(result.getData().getList());
+                            }else{
+                                mHomeOneAdapter.addData(result.getData().getList());
+                            };
+                            int totalPage = StringUtil.getTotalPage(result.getData().getCount(), ConstValues.PAGE_SIZE);
+                            if(totalPage <= page){
+                                refreshLayout.finishLoadMoreWithNoMoreData();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        hideLoading();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        refreshLayout.finishRefresh();
+                        refreshLayout.finishLoadMore();
                         hideLoading();
                     }
                 });
