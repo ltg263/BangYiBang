@@ -52,20 +52,12 @@ import retrofit2.http.Url;
 public interface ApiService {
 
     /**
-     * 全局-文件上传接口
-     * @return
-     */
-    @Multipart
-    @POST(ConstValues.BASE_URL + "api/scmp-application-mall/global/file/upload")
-    Observable<Result<SubmitFilesBean>> uploadFile(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
-
-    /**
      * 全局-发送短信验证码
      * @param request
      * @return
      */
     @POST(ConstValues.BASE_URL + "api/sms/send")
-    Observable<Result> sendSms(@Body LoginRequest request);
+    Observable<Result> postSendSms(@Body LoginRequest request);
 
     /**
      * 登录页-手机短验登录接口
@@ -73,7 +65,7 @@ public interface ApiService {
      * @return
      */
     @POST(ConstValues.BASE_URL + "/api/user/mobilelogin")
-    Observable<Result<LoginData>> userMobileLogin(@Body LoginRequest request);
+    Observable<Result<LoginData>> postUserMobileLogin(@Body LoginRequest request);
 
     /**
      * 登录页-手机密码登录接口
@@ -81,7 +73,7 @@ public interface ApiService {
      * @return
      */
     @POST(ConstValues.BASE_URL + "/api/user/login")
-    Observable<Result<LoginData>> userLogin(@Body LoginRequest request);
+    Observable<Result<LoginData>> postUserLogin(@Body LoginRequest request);
 
     /**
      * 登录页-手机短验找回密码接口
@@ -89,7 +81,14 @@ public interface ApiService {
      * @return
      */
     @POST(ConstValues.BASE_URL + "api/user/resetpwd")
-    Observable<Result> smsFindPwd(@Body LoginRequest request);
+    Observable<Result> postSmsFindPwd(@Body LoginRequest request);
+
+    /**
+     * 首页接口
+     * @return
+     */
+    @GET(ConstValues.BASE_URL + "api/index/index")
+    Observable<Result> getIndexIndex();
 
 
     /**
@@ -108,12 +107,12 @@ public interface ApiService {
     Observable<Result> logout();
 
     /**
-     * 主页-banner列表
+     * 全局-文件上传接口
      * @return
      */
-    @GET(ConstValues.BASE_URL + "api/scmp-application-mall/content/banner")
-    Observable<Result<List<HomeBannerData>>> homeBanner();
-
+    @Multipart
+    @POST(ConstValues.BASE_URL + "api/scmp-application-mall/global/file/upload")
+    Observable<Result<SubmitFilesBean>> uploadFile(@Part MultipartBody.Part file, @PartMap Map<String, RequestBody> map);
     /**
      * 首页-分类列表
      * @return

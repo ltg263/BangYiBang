@@ -120,7 +120,7 @@ public class LoginAccountActivity extends BaseActivity {
         bean.setAccount(account);
         bean.setPassword(password);//1注
         RetrofitUtil.getInstance().apiService()
-                .userLogin(bean)
+                .postUserLogin(bean)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {

@@ -106,7 +106,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     public boolean isResultOk(Result mResult) {
-        if(mResult.getCode()==200){
+        if(mResult.getCode()==1){
             return true;
         }
         return false;

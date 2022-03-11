@@ -105,7 +105,7 @@ public class HttpsUtils {
         bean.setMobile(mobile);
         bean.setEvent(event);//1注册 2登录 3找回密码
         RetrofitUtil.getInstance().apiService()
-                .sendSms(bean)
+                .postSendSms(bean)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {

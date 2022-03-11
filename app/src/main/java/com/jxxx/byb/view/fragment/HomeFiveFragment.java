@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.jxxx.byb.MainActivity;
 import com.jxxx.byb.R;
 import com.jxxx.byb.api.Result;
 import com.jxxx.byb.api.RetrofitUtil;
@@ -154,15 +155,20 @@ public class HomeFiveFragment extends BaseFragment {
                     }
                 });
     }
+    boolean isBandZhu = true;
 
-    @OnClick({R.id.iv_set, R.id.iv_msg, R.id.rl_user_info, R.id.ll_top_1, R.id.ll_top_2, R.id.ll_top_3, R.id.ll_center_1,
+    @OnClick({R.id.tv_qhsf,R.id.iv_set, R.id.iv_msg, R.id.rl_user_info, R.id.ll_top_1, R.id.ll_top_2, R.id.ll_top_3, R.id.ll_center_1,
             R.id.ll_center_2, R.id.ll_center_3, R.id.ll_center_4, R.id.ll_below_1, R.id.ll_below_2, R.id.ll_below_3, R.id.ll_below_4})
     public void onClick(View view) {
-        if (!ConstValues.ISLOGIN) {
-            LoginEmsSendActivity.startActivityLogin(mContext);
-            return;
-        }
+//        if (!ConstValues.ISLOGIN) {
+//            LoginEmsSendActivity.startActivityLogin(mContext);
+//            return;
+//        }
         switch (view.getId()) {
+            case R.id.tv_qhsf:
+                isBandZhu = !isBandZhu;
+                ((MainActivity) getActivity()).showOneTwoUi(isBandZhu);
+                break;
             case R.id.iv_set:
                 baseStartActivity(MineSettingActivity.class, null);
                 break;

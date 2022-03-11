@@ -39,6 +39,15 @@
             android:src="@drawable/frame_3" />
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/tv_qhsf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="切换身份"
+        android:textColor="@color/color_000000"
+        android:textSize="16sp" />
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

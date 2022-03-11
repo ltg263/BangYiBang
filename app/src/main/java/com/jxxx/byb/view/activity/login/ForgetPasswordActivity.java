@@ -89,7 +89,7 @@ public class ForgetPasswordActivity extends BaseActivity {
                 bean.setCaptcha(code);
                 showLoading();
                 RetrofitUtil.getInstance().apiService()
-                        .smsFindPwd(bean)
+                        .postSmsFindPwd(bean)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(Schedulers.io())
                         .subscribe(new Observer<Result>() {

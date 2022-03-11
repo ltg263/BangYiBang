@@ -61,7 +61,7 @@ public class LoginEmsCheckActivity extends BaseActivity {
         bean.setMobile(mobile);
         bean.setCaptcha(captcha);//1注册 2登录 3找回密码
         RetrofitUtil.getInstance().apiService()
-                .userMobileLogin(bean)
+                .postUserMobileLogin(bean)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Result>() {

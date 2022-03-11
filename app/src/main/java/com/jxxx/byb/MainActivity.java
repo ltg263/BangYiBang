@@ -32,8 +32,8 @@ public class MainActivity extends BaseActivity{
     @BindView(R.id.bnv_home_navigation)
     BottomNavigationView mBnvHomeNavigation;
     private Fragment mFragment;
-    private HomeTwoFragment mHomeTwoFragment;
     private HomeOneFragment mHomeOneFragment;
+    private HomeTwoFragment mHomeTwoFragment;
     private HomeThreeFragment mHomeThreeFragment;
     private HomeFourFragment mHomeFourFragment;
     private HomeFiveFragment mHomeFiveFragment;
@@ -151,6 +151,11 @@ public class MainActivity extends BaseActivity{
             tvNum.setText("");
             tvNum.setVisibility(View.GONE);
         }
+    }
+
+    public void showOneTwoUi(boolean isBandZhu){
+        mBnvHomeNavigation.getMenu().getItem(0).setVisible(isBandZhu);
+        mBnvHomeNavigation.getMenu().getItem(1).setVisible(!isBandZhu);
     }
 
     public void startFragmentTwo(String type){

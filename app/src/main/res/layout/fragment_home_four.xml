@@ -6,18 +6,48 @@
     android:background="@color/color_bj_theme"
     android:orientation="vertical">
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:drawableEnd="@mipmap/icon_xia_jiantou"
+            android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="订单"
-            android:textColor="@color/color_000000"
-            android:textSize="16sp" />
+            android:text="宁波"
+            android:textColor="@color/color_333333"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/circle_solid_f4f4f4_25"
+            android:drawableStart="@mipmap/ic_search"
+            android:drawablePadding="10dp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="15dp"
+            android:text="输入商品名称"
+            android:textColor="@color/color_999999"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/tv_kf"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:padding="3dp"
+            android:src="@drawable/group_3698" />
+
     </LinearLayout>
 
     <net.lucode.hackware.magicindicator.MagicIndicator

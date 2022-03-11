@@ -21,7 +21,7 @@ import com.jxxx.byb.bean.OrderInfoBean;
 import com.jxxx.byb.bean.ShoppingCartListBean;
 import com.jxxx.byb.view.activity.OrderAffirmActivity;
 import com.jxxx.byb.view.activity.login.LoginEmsSendActivity;
-import com.jxxx.byb.view.adapter.HomeGoodsAdapter;
+import com.jxxx.byb.view.adapter.HomeOneAdapter;
 import com.jxxx.byb.view.adapter.ShopCarGoodsAdapter;
 
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ public class HomeThreeFragment extends BaseFragment {
     TextView mTvPrice;
     @BindView(R.id.iv_all)
     ImageView mIvAll;
-    private HomeGoodsAdapter mHomeGoodsAdapter;
+    private HomeOneAdapter mHomeGoodsAdapter;
     private ShopCarGoodsAdapter mShopCarGoodsAdapter;
 
     private List<Integer> checkedSkuIdList = new ArrayList<>();
@@ -91,7 +91,7 @@ public class HomeThreeFragment extends BaseFragment {
         });
 
         mRvList.setHasFixedSize(true);
-        mHomeGoodsAdapter = new HomeGoodsAdapter(null);
+        mHomeGoodsAdapter = new HomeOneAdapter(null);
         mRvList.setAdapter(mHomeGoodsAdapter);
 
     }

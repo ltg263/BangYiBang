@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxxx.byb.R;
 import com.jxxx.byb.base.BaseActivity;
-import com.jxxx.byb.view.adapter.HomeGoodsAdapter;
+import com.jxxx.byb.view.adapter.HomeOneAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class SearchGoodsActivity extends BaseActivity {
     RecyclerView mRecyclerView;
     private String searchStr = null;
     public static SearchGoodsActivity activity;
-    private HomeGoodsAdapter mHomeFyAdapter;
+    private HomeOneAdapter mHomeFyAdapter;
 
     @Override
     protected void onResume() {
@@ -105,7 +105,7 @@ public class SearchGoodsActivity extends BaseActivity {
 
     private void initRv() {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mHomeFyAdapter = new HomeGoodsAdapter(null);
+        mHomeFyAdapter = new HomeOneAdapter(null);
         mRecyclerView.setAdapter(mHomeFyAdapter);
         mHomeFyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override

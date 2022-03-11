@@ -12,10 +12,9 @@ import com.jxxx.byb.api.RetrofitUtil;
 import com.jxxx.byb.app.ConstValues;
 import com.jxxx.byb.base.BaseFragment;
 import com.jxxx.byb.utils.GlideImageLoader;
-import com.jxxx.byb.utils.StatusBarUtil;
 import com.jxxx.byb.view.activity.login.LoginEmsSendActivity;
 import com.jxxx.byb.view.activity.search.SearchGoodsActivity;
-import com.jxxx.byb.view.adapter.HomeOneAdapter;
+import com.jxxx.byb.view.adapter.HomeFourAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -32,38 +31,24 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 
-public class HomeOneFragment extends BaseFragment {
+public class HomeFourListFragment extends BaseFragment {
 
     @BindView(R.id.home_banner)
     Banner mHomeBanner;
     @BindView(R.id.rv_list)
     RecyclerView mRvList;
-    @BindView(R.id.rl_include_login)
-    RelativeLayout rl_include_login;
 
-    private HomeOneAdapter mHomeOneAdapter;
+    private HomeFourAdapter mHomeFourAdapter;
     @Override
     protected int setLayoutResourceID() {
-        StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.color_bj_theme);
-        return R.layout.fragment_home_one;
-    }
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if(hidden){
-            StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.white);
-        }else {
-            initData();
-            StatusBarUtil.setStatusBarMode(getActivity(), true, R.color.color_2E6DFB);
-        }
+        return R.layout.fragment_home_four_list;
     }
 
     @Override
     protected void initView() {
         mRvList.setHasFixedSize(true);
-        mHomeOneAdapter = new HomeOneAdapter(null);
-        mRvList.setAdapter(mHomeOneAdapter);
+        mHomeFourAdapter = new HomeFourAdapter(null);
+        mRvList.setAdapter(mHomeFourAdapter);
     }
 
     @Override
@@ -94,7 +79,7 @@ public class HomeOneFragment extends BaseFragment {
                                 list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
                                 list_path.add("https://scmp-oss.cainiu666.com/1644365420012.jpg");
                                 bannerConfig(list_path);
-                                mHomeOneAdapter.setNewData(list_path);
+                            mHomeFourAdapter.setNewData(list_path);
 //                            }
                         }
                     }
@@ -109,32 +94,6 @@ public class HomeOneFragment extends BaseFragment {
                         hideLoading();
                     }
                 });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        rl_include_login.setVisibility(View.VISIBLE);
-        if(ConstValues.ISLOGIN){
-            rl_include_login.setVisibility(View.GONE);
-        }
-        initData();
-    }
-
-
-    @OnClick({R.id.address, R.id.tv_search,R.id.rl_include_login})
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.address:
-
-                break;
-            case R.id.tv_search:
-                baseStartActivity(SearchGoodsActivity.class,null);
-                break;
-            case R.id.rl_include_login:
-                LoginEmsSendActivity.startActivityLogin(getActivity());
-                break;
-        }
     }
 
     private void bannerConfig(List<String> list_path) {

@@ -2,12 +2,16 @@ package com.jxxx.byb.utils;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import androidx.viewpager.widget.ViewPager;
 
 
 import com.jxxx.byb.R;
+import com.jxxx.byb.utils.view.ScaleTransitionPagerTitleView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -70,6 +74,50 @@ public class MagicIndicatorUtils {
             }
         });
         mMagicIndicator.setNavigator(commonNavigator);
+        ViewPagerHelper.bind(mMagicIndicator, mViewPager);
+    }
+
+    public static void initMagicIndicator_2(Context mContext, List<String> mDataList,MagicIndicator mMagicIndicator,ViewPager mViewPager) {
+        mMagicIndicator.setBackgroundColor(mContext.getResources().getColor(R.color.color_ffffff));
+        CommonNavigator commonNavigator7 = new CommonNavigator(mContext);
+        commonNavigator7.setScrollPivotX(0.65f);
+        commonNavigator7.setAdapter(new CommonNavigatorAdapter() {
+            @Override
+            public int getCount() {
+                return mDataList == null ? 0 : mDataList.size();
+            }
+
+            @Override
+            public IPagerTitleView getTitleView(Context context, final int index) {
+                SimplePagerTitleView simplePagerTitleView = new ScaleTransitionPagerTitleView(context);
+                simplePagerTitleView.setText(mDataList.get(index));
+                simplePagerTitleView.setTextSize(18);
+                simplePagerTitleView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
+                simplePagerTitleView.setNormalColor(Color.parseColor("#999999"));
+                simplePagerTitleView.setSelectedColor(Color.parseColor("#333333"));
+                simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mViewPager.setCurrentItem(index);
+                    }
+                });
+                return simplePagerTitleView;
+            }
+
+            @Override
+            public IPagerIndicator getIndicator(Context context) {
+                LinePagerIndicator indicator = new LinePagerIndicator(context);
+                indicator.setMode(LinePagerIndicator.MODE_EXACTLY);
+                indicator.setLineHeight(UIUtil.dip2px(context, 4));
+                indicator.setLineWidth(UIUtil.dip2px(context, 18));
+                indicator.setRoundRadius(UIUtil.dip2px(context, 2));
+                indicator.setStartInterpolator(new AccelerateInterpolator());
+                indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
+                indicator.setColors(Color.parseColor("#EB5D4F"));
+                return indicator;
+            }
+        });
+        mMagicIndicator.setNavigator(commonNavigator7);
         ViewPagerHelper.bind(mMagicIndicator, mViewPager);
     }
 }
